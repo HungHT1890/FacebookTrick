@@ -27,30 +27,29 @@ def check_create(cookie,uid=4):
         'X-Fb-Lsd':'y0qrNgEQAPqPE3jyQfjc6e',
                 }
     av_id = findall(r'c_user=(\d+)',cookie)[0]
+    # nếu requests qua api này lỗi ae liên hệ t.me/hunght1890 - hoặc tự thay phần fb_dtsg hoặc jazoest hoặc lsd
     data = {
-       'av': av_id,
-    '__aaid': '0',
-    '__user': av_id,
-    '__a': '1',
-    '__req': '5t',
-    '__hs': '19802.HYP:comet_pkg.2.1..2.1',
-    'dpr': '1',
-    '__comet_req': '15',
-    'fb_dtsg': 'NAcO4zc3SWgFBSkdxi3EaG9BPnylimfaxTuMPI4_9ss6BA-5Mg1okIw:48:1709694280',
-    'jazoest': '25469',
-    'lsd': 'y0qrNgEQAPqPE3jyQfjc6e',
-    '__spin_r': '1012178525',
-    '__spin_b': 'trunk',
-    '__spin_t': '1710935978',
-    'fb_api_caller_class': 'RelayModern',
-    'fb_api_req_friendly_name': 'MarketplaceSellerProfileDialogQuery',
-    'variables': '{"isCOBMOB":false,"isSelfProfile":false,"productID":"1029558141759610","scale":1,"sellerId":"'+ uid +'","useContextualViewHeader":true,"__relay_internal__pv__VideoPlayerRelayReplaceDashManifestWithPlaylistrelayprovider":false}',
-    'server_timestamps': 'true',
-    'doc_id': '6781721348600027'
-    }
+            'av': av_id,
+            'dpr': '1',
+            '__comet_req': '15',
+            'fb_dtsg': 'NAcOpWt344j4V4wWIuCrOec5SEdNB0WZyflfHUBzp5ZuCrMmUK4HamQ:21:1705050718',
+            'jazoest': '25434',
+            'lsd': 'MYUfqYvL5ZHWFfdPQ1kktF',
+            'fb_api_caller_class': 'RelayModern',
+            'fb_api_req_friendly_name': 'MarketplaceSellerProfileDialogQuery',
+            'variables': '{"isCOBMOB":false,"isSelfProfile":false,"productID":"944605867143682","scale":1,"sellerId":"'+ uid +'","useContextualViewHeader":true}',
+            'server_timestamps': 'true',
+            'doc_id': '7089290281172095'
+                }
+    
     try:
-        response = ss.post(url=api , headers= headers , data = data).json()
-        data = response['data']
+        response = ss.post(url=api , headers= headers , data = data)
+        if __name__ == '__main__':
+            # in ra thử xem có lỗi gì
+            print(response.text)
+            
+        response_js = response.json()
+        data = response_js['data']
         user = data['user']
         items = user['items']
         node = items['nodes']
